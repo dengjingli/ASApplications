@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 public class score extends AppCompatActivity {
     private static final String TAG="BallActivity";
-    int score=0;
     int scorea=0;
     int scoreb=0;
 
