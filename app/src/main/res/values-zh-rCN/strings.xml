@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Example3</string>
+    <string name="reset">重置</string>
+    <string name="plus3">加3分</string>
+    <string name="plus2">加2分</string>
+    <string name="plus1">加1分</string>
+    <string name="team">团队名称</string>
+    <string name="score">得分</string>
+    <string name="teama">A队</string>
+    <string name="teamb">B队</string>
+    <string name="scorea">0</string>
+    <string name="scoreb">0</string>
+    <string name="tip1">请输入身高</string>
+    <string name="tip2">请输入体重</string>
+    <string name="height">身高（m）</string>
+    <string name="weight">体重（kg）</string>
+    <string name="wish">生日快乐！</string>
+    <string name="author">41810086邓晶丽</string>
+    <string name="result">结果</string>
+
+</resources>

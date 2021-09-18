@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Example3</string>
+    <string name="reset">reset</string>
+    <string name="plus3">+3 points</string>
+    <string name="plus2">+2 points</string>
+    <string name="plus1">+1 points</string>
+    <string name="team">Team Name</string>
+    <string name="score">score</string>
+    <string name="teama">Team A</string>
+    <string name="teamb">Team B</string>
+    <string name="scorea">0</string>
+    <string name="scoreb">0</string>
+    <string name="tip1">请输入身高</string>
+    <string name="tip2">please input your weight</string>
+    <string name="height">height(m)</string>
+    <string name="weight">weight(kg)</string>
+    <string name="wish">Happy Birthday!</string>
+    <string name="author">41810086 dengjingli</string>
+    <string name="result">result</string>
+</resources>
