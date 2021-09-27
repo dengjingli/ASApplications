@@ -9,6 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Example3">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/config" />
+
+        <activity
+            android:name=".Config"
+            android:exported="true" />
+        <activity
+            android:name=".Huilv"
+            android:exported="true" />
+        <activity
+            android:name=".Money"
+            android:exported="true" />
         <activity
             android:name=".score"
             android:exported="true" />
