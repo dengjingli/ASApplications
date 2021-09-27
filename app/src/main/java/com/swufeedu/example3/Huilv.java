@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,12 +43,17 @@ public class Huilv extends AppCompatActivity {
 
     }
     public void openConfig(View btn) {
+        config();
+    }
+
+    private void config() {
         Intent config =new Intent(this,Config.class);
         config.putExtra("dollar_rate_key",dollarRate);
         config.putExtra("eur_rate_key",eurRate);
         //startActivity(config);
         startActivityForResult(config,1);
     }
+
     @Override
     protected void onActivityResult (int requestCode,int resultCode,Intent data){
         if(requestCode==1&&resultCode==2){
@@ -56,5 +63,18 @@ public class Huilv extends AppCompatActivity {
         }
         super.onActivityResult(requestCode,resultCode,data);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId()==R.id.menu_setting){
+            Log.i(TAG,"onOptionsItemSelected:setting");
+            config();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
