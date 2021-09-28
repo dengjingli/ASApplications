@@ -20,12 +20,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/butdollar"
         android:layout_width="264dp"
         android:layout_height="48dp"
         android:layout_marginStart="73dp"
         android:layout_marginTop="38dp"
-        android:onClick="click"
+        android:onClick="huiclick"
         android:text="dollor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result" />
@@ -36,10 +36,10 @@
         android:layout_height="56dp"
         android:layout_marginStart="73dp"
         android:layout_marginTop="42dp"
-        android:onClick="click"
+        android:onClick="huiclick"
         android:text="eur"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/butdollar" />
 
     <Button
         android:id="@+id/button4"
@@ -60,6 +60,7 @@
         android:layout_marginStart="138dp"
         android:layout_marginTop="40dp"
         android:text="结果"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input" />
 
