@@ -82,6 +82,10 @@ public class Huilv extends AppCompatActivity implements Runnable{
                 super.handleMessage(msg);
             }
         };
+        //开启线程
+        MyThread td=new MyThread();
+        td.setHandler(handler);
+
         Thread t = new Thread(this);
         t.start();
 
