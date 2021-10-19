@@ -14,7 +14,9 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ShowActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+        </activity>
         <activity
             android:name=".RateItemActivity"
             android:exported="true">

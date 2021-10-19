@@ -2,8 +2,10 @@ package com.swufeedu.example3;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,12 +29,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RateList2Activity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener {
+public class RateList2Activity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener{
     public static final String TAG = "RateList2Activity";
     List<HashMap<String,String>> list = new ArrayList<>();
     ListView listView;
     Handler handler;
     ProgressBar progressBar;
+    MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,10 @@ public class RateList2Activity extends AppCompatActivity implements Runnable, Ad
             public void handleMessage(@NonNull Message msg) {
                 Log.i(TAG, "handleMessage: 收到消息");
                 if(msg.what == 0){
-                    MyAdapter adapter = new MyAdapter(RateList2Activity.this, R.layout.list_item, list);
+                    adapter = new MyAdapter(RateList2Activity.this, R.layout.list_item, list);
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(RateList2Activity.this);
+                    listView.setOnItemLongClickListener(RateList2Activity.this);
 
 
                 }
@@ -98,5 +102,23 @@ public class RateList2Activity extends AppCompatActivity implements Runnable, Ad
         intent.putExtra("name",name);
         intent.putExtra("value",value);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+        Log.i(TAG,"onItemLongClick,长安列表项positions="+position);
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("提示")
+                .setMessage("请确认是否删除当前数据")
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i(TAG,"onclick:对话框事件处理");
+                        list.remove(position);
+                        adapter.notifyDataSetChanged();
+                    }
+                }).setNegativeButton("否",null);
+        builder.create().show();
+        return true;
     }
 }
