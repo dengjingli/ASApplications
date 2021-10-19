@@ -1,6 +1,7 @@
 package com.swufeedu.example3;
 
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,12 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RateList2Activity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener {
+public class RateItemActivity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener {
     public static final String TAG = "RateList2Activity";
     List<HashMap<String,String>> list = new ArrayList<>();
     ListView listView;
@@ -37,34 +39,42 @@ public class RateList2Activity extends AppCompatActivity implements Runnable, Ad
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rate_list2);
+        setContentView(R.layout.activity_rate_list_prog);
 
         listView = findViewById(R.id.mylist2);//列表
-
+        progressBar = findViewById(R.id.progressbar);//进度条
 
         handler = new Handler(Looper.myLooper()){
             @Override
             public void handleMessage(@NonNull Message msg) {
                 Log.i(TAG, "handleMessage: 收到消息");
                 if(msg.what == 0){
-                    MyAdapter adapter = new MyAdapter(RateList2Activity.this, R.layout.list_item, list);
+                    //ListAdapter adapter=new SimpleAdapter(RateList2Activity.this,list,R.layout.item_listview,new String[]{"name","value"},new int[]{R.id.item_name,R.id.item_detail});
+                    //listView.setAdapter(adapter);
+                    MyAdapter adapter = new MyAdapter(RateItemActivity.this, R.layout.list_item, list);
                     listView.setAdapter(adapter);
-                    listView.setOnItemClickListener(RateList2Activity.this);
+                    listView.setOnItemClickListener(RateItemActivity.this);
 
-
+                    progressBar.setVisibility(View.GONE);
                 }
                 super.handleMessage(msg);
             }
         };
         //开启线程
-        Thread thread = new Thread(RateList2Activity.this);
+        Thread thread = new Thread(RateItemActivity.this);
         thread.start();
 
     }
 
     @Override
     public void run() {
-        Document document = null;
+        try {
+            Thread.sleep(3000);//进度条出现时间为3s
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        org.jsoup.nodes.Document document = null;
         try {
             document = Jsoup.connect("https://www.boc.cn/sourcedb/whpj/").get();
         } catch (IOException e) {
@@ -94,7 +104,7 @@ public class RateList2Activity extends AppCompatActivity implements Runnable, Ad
         HashMap<String,String> hashMap = (HashMap<String, String>)item;
         String name = hashMap.get("name");
         String value = hashMap.get("value");
-        Intent intent = new Intent(RateList2Activity.this, ShowActivity.class);
+        Intent intent = new Intent(RateItemActivity.this, ShowActivity.class);
         intent.putExtra("name",name);
         intent.putExtra("value",value);
         startActivity(intent);
